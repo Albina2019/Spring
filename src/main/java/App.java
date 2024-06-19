@@ -3,10 +3,23 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class App {
     public static void main(String[] args) {
+        // создаем пустой спринговый контекст,
+        // который будет искать свои бины по аннотациям в указанном пакете
         ApplicationContext applicationContext =
                 new AnnotationConfigApplicationContext(AppConfig.class);
         HelloWorld bean =
                 (HelloWorld) applicationContext.getBean("helloworld");
         System.out.println(bean.getMessage());
+        HelloWorld bean2 =
+                (HelloWorld) applicationContext.getBean("helloworld");
+        System.out.println(bean == bean2);
+        System.out.println(bean2);
+
+        Cat beanCat = (Cat) applicationContext.getBean("cat");
+        System.out.println(beanCat.getName());
+        System.out.print(beanCat.getAge());
+        Cat bean2Cat = (Cat) applicationContext.getBean("cat");
+        System.out.println(beanCat.getName());
+        System.out.println(beanCat == bean2Cat);
     }
 }
